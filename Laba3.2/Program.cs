@@ -1,104 +1,47 @@
-﻿namespace Завдання2
+﻿using System;
+using System.Collections.Generic;
+using army;
+
+namespace Завдання2
 {
     //Армія. Визначити ієрархію військових. Створити кілька об'єктів-взводів(Невеликий військовий підрозділ у різних родах військ).
     //Сортувати військових згідно бойової спеціальності.
     //Провести сортування взводів на основі одного за параметірв.
     //Вивести список військових, які користуються однаковим видом зброї.
 
-    internal class Soldier
-    {
-        public int Id { get; set; }
-        public string Specialty { get; set; }
-
-        public string Weapon { get; set; }
-
-        public Soldier(int id, string specialty, string weapon)
-        {
-            Id = id;
-            Specialty = specialty;
-            Weapon = weapon;
-        }
-
-    }
-    internal class Commanders : Soldier
-    {
-        public string Status { get; set; }
-
-        public Commanders(int id, string specialty, string weapon, string status)
-            : base(id, specialty, weapon)
-        {
-            Status = status;
-        }
-
-    }
-
-    internal class Vzvid
-    {
-
-        public List<Soldier> Vzvod = new List<Soldier>();
-        public List<Commanders> Com = new List<Commanders>();
-
-        // Конструктор
-        public Vzvid(List<Soldier> vzvod, List<Commanders> com)
-        {
-            Vzvod = vzvod;
-            Com = com;
-        }
-        
-        public void ShowVzvid()
-        {
-            foreach (var v in Com)
-            {
-                Console.WriteLine(v.Id);
-                Console.WriteLine($"{v.Specialty} | {v.Weapon} | {v.Status}");
-                Console.WriteLine();
-            }
-
-            foreach (var v in Vzvod)
-            {
-                Console.WriteLine(v.Id);
-                Console.WriteLine($"{v.Specialty} | {v.Weapon}");
-                Console.WriteLine();
-            }
-
-        }
-
-        public void SortVzvid()
-        {
-            foreach (var item in Vzvod)
-            {
-                if (item.Weapon == "AK-47")
-                {
-                    Console.WriteLine();
-                }
-            }
-        }
-    }
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
 
             Vzvid Vzvоd1 = new Vzvid(new List<Soldier>()
             {
-             new Soldier(17, "Shooter", "AK-47"),
-             new Soldier(18, "Shooter", "AK-47"),
-             new Soldier(19, "Shooter", "AK-47"),
-             new Soldier(20, "Shooter", "AK-47"),
-             new Soldier(21, "Shooter", "AK-47"),
-             new Soldier(22, "Shooter", "AK-47"),
-             new Soldier(23, "Shooter", "AK-47"),
-             new Soldier(24, "Shooter", "AK-47"),
+             new Soldier(17, "Communicator","Rifle", "Verba Yaroslav"),
+             new Soldier(18, "Communicator","Rifle", "Maistrenko Mykyta"),
+             new Soldier(19, "Communicator","Rifle","Mizinov Maksym"),
+             new Soldier(20, "Artillerist","Grenade launcher", "Marzhievskiy Alex"),
+             new Soldier(21, "Scout","Automatic weapons", "Kaiskii Kirill"),
+             new Soldier(22, "Communicator","Rifle", "Lazarev Denys"),
+             new Soldier(23, "Artillerist","Grenade launcher", "Tyshenko Andriy"),
+             new Soldier(24, "Artillerist","Grenade launcher","Lasinskiy Nikita"),
+             new Soldier(25, "Communicator","Rifle", "Kalenskiy Misha"),
+             new Soldier(26, "Scout","Automatic weapons", "Usupov Hleb"),
+             new Soldier(27, "Scout","Automatic weapons", "Chaminov Ramil"),
+             new Soldier(28, "Communicator","Rifle", "Rubinov Leonid"),
+             new Soldier(29, "Artillerist","Grenade launcher", "Nemchinskiy Yurii"),
+             new Soldier(30, "Scout","Automatic weapons", "Popasniy Alexander"),
+
             },
 
            new List<Commanders>()
            {
-           new Commanders(1,"Strategist","Mozg","Lieutenant")
+           new Commanders(1,"Strategist - Ohrimenko Sergiy","Mozg - Firsik Yan","Lieutenant - Lozovinskiy Demian", ""),
            }
            );
 
-            Vzvоd1.ShowVzvid();
-            Vzvоd1.SortVzvid();
+            Vzvоd1.SortVzvid("24");
+            Vzvоd1.SortSpec("Artillerist");
+            Vzvоd1.SortWep("Rifle");
             Console.ReadLine();
         }
     }
